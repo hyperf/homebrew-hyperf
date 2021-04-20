@@ -1,4 +1,4 @@
-class Autoconf < Formula
+class AutoconfAt269 < Formula
   desc "Automatic configure script builder"
   homepage "https://www.gnu.org/software/autoconf"
   url "https://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz"
@@ -8,6 +8,8 @@ class Autoconf < Formula
 
   depends_on "m4"
   uses_from_macos "perl"
+
+  keg_only :versioned_formula
 
   def install
     on_macos do
