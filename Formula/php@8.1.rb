@@ -99,6 +99,13 @@ class PhpAT81 < Formula
     if OS.mac?
       ENV["SASL_CFLAGS"] = "-I#{MacOS.sdk_path_if_needed}/usr/include/sasl"
       ENV["SASL_LIBS"] = "-lsasl2"
+      ENV["PATH"] = "#{Formula["openssl@1.1"].opt_prefix}/bin:$PATH"
+      ENV["LDFLAGS"] = "-L#{Formula["openssl@1.1"].opt_prefix}/lib"
+      ENV["CPPFLAGS"] = "-I#{Formula["openssl@1.1"].opt_prefix}/include"
+      ENV["PKG_CONFIG_PATH"] = "#{Formula["openssl@1.1"].opt_prefix}/lib/pkgconfig:$PKG_CONFIG_PATH"
+      ENV["OPENSSL_LIBS"] = "-L#{Formula["openssl@1.1"].opt_prefix}/lib"
+      ENV["OPENSSL_CFLAGS"] = "-I#{Formula["openssl@1.1"].opt_prefix}/include"
+
     else
       ENV["SQLITE_CFLAGS"] = "-I#{Formula["sqlite"].opt_include}"
       ENV["SQLITE_LIBS"] = "-lsqlite3"
@@ -191,7 +198,7 @@ class PhpAT81 < Formula
     system "export LDFLAGS=-L#{Formula["openssl@1.1"].opt_prefix}/lib"
     system "export CPPFLAGS=-I#{Formula["openssl@1.1"].opt_prefix}/include"
     system "export PKG_CONFIG_PATH=#{Formula["openssl@1.1"].opt_prefix}/lib/pkgconfig:$PKG_CONFIG_PATH"
-    
+
     system "./configure", *args
     system "make"
     system "make", "install"
