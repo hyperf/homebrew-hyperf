@@ -156,7 +156,7 @@ class PhpAT81 < Formula
       --with-mysql-sock=/tmp/mysql.sock
       --with-mysqli=mysqlnd
       --with-ndbm#{headers_path}
-      --with-openssl
+      --with-openssl=#{Formula["openssl@1.1"].opt_prefix}
       --with-password-argon2=#{Formula["argon2"].opt_prefix}
       --with-pdo-dblib=#{Formula["freetds"].opt_prefix}
       --with-pdo-mysql=mysqlnd
@@ -173,6 +173,7 @@ class PhpAT81 < Formula
       --with-xsl
       --with-zip
       --with-zlib
+      --with-libdir=lib
     ]
 
     if OS.mac?
