@@ -187,6 +187,11 @@ class PhpAT81 < Formula
       args << "--without-gdbm"
     end
 
+    system "export", "PATH=#{Formula["openssl@1.1"].opt_prefix}/bin:$PATH"
+    system "export", "LDFLAGS=-L #{Formula["openssl@1.1"].opt_prefix}/lib"
+    system "export", "CPPFLAGS=-I #{Formula["openssl@1.1"].opt_prefix}/include"
+    system "export", "PKG_CONFIG_PATH=#{Formula["openssl@1.1"].opt_prefix}/lib/pkgconfig"
+    
     system "./configure", *args
     system "make"
     system "make", "install"
